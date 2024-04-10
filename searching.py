@@ -21,6 +21,7 @@ def read_data(file_name, field):
         data = json.load(json_file)
     return data[field]
 
+
 def linear_search(numbers, my_number):
     results = {"positions":[], "count":0}
     for i in range(len(numbers)):
@@ -30,9 +31,37 @@ def linear_search(numbers, my_number):
     return results
 
 
+def pattern_search(sequence, pattern):
+    # dna_string = set()
+    # start_index = 0
+    # for element in range(len(sequence)):
+    #     dna_substring = sequence[element:element+3]
+    #     if dna_substring != pattern:
+    #         continue
+    #     elif dna_substring == pattern:
+    #         dna_string.add(sequence[start_index:element])
+    #         start_index = + element + 2
+    # return dna_string
+    positions = set()
+    sequence_index = 0
+    n = len(sequence)
+    m = len(pattern)
+    while sequence_index < n - m:
+        if sequence[sequence_index:sequence_index + m] == pattern:
+            positions.add(sequence_index + m // 2)
+        sequence_index = sequence_index + 1
+    return positions
+
+
+
 def main():
     unordered_numbers = read_data("sequential.json", "unordered_numbers")
-    print(unordered_numbers)
+    dna_sequence = read_data("sequential.json", "dna_sequence")
+    results = linear_search(unordered_numbers, 7)
+    dna_string = pattern_search(dna_sequence, "ATA")
+    print(results)
+    print(dna_string)
+
 
 if __name__ == '__main__':
     main()
