@@ -21,6 +21,14 @@ def read_data(file_name, field):
         data = json.load(json_file)
     return data[field]
 
+def linear_search(numbers, my_number):
+    results = {"positions":[], "count":0}
+    for i in range(len(numbers)):
+        if numbers[i] == my_number:
+            results["positions"].append(i)
+            results["count"] = results["count"] + 1
+    return results
+
 
 def main():
     unordered_numbers = read_data("sequential.json", "unordered_numbers")
